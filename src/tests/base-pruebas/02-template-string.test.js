@@ -1,16 +1,35 @@
-import {getSaludo} from "../../base-pruebas/02-template-string.js";
+import { getUser, getUsuarioActivo } from '../../src/base-pruebas/02-template-string';
 
+describe('Pruebas en 05-funciones', () => {
 
-describe('Pruebas em 02-template-string', () => {
+    test('getUser debe de retornar un objeto', () => {
 
-    test('getSaludo debe de retornar "Hola Gustavo"',  ()  => {
+        const testUser = {
+            uid: 'ABC123',
+            username: 'El_Papi1502'
+        };
 
-        const name = 'Gustavo';
-        const message = getSaludo(name);
+        // Llamar a la función getUser
+        const user = getUser();
 
-        expect(message).toBe(`Hola ${name} `);
+        // Comparar el objeto esperado con el objeto retornado
+        expect(testUser).toEqual(user);
 
-    })
+    });
 
-})
+    test('getUsuarioActivo debe de retornar un objeto', () => {
 
+        const name = 'Fernando';
+
+        // Llamar a la función getUsuarioActivo con el nombre como argumento
+        const user = getUsuarioActivo(name);
+
+        // Comparar el objeto esperado con el objeto retornado
+        expect(user).toStrictEqual({
+            uid: 'ABC567',
+            username: name
+        });
+
+    });
+
+});
